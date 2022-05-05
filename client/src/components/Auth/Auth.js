@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 import Icon from './icon';
@@ -11,7 +12,7 @@ import { AUTH } from '../../constants/actionTypes';
 import useStyles from './styles';
 import Input from './Input';
 
-const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
+const initialState = { firstName: '', lastName: '', username: '', email: '',contact: '', password: '', confirmPassword: '' };
 
 const SignUp = () => {
   const [form, setForm] = useState(initialState);
@@ -52,6 +53,10 @@ const SignUp = () => {
     }
   };
 
+  const responseFacebook = (response) => {
+    console.log(response);
+  }
+
   const googleError = () => console.log('Google Sign In was unsuccessful. Try again later');
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -71,7 +76,9 @@ const SignUp = () => {
               <Input name="lastName" label="Last Name" handleChange={handleChange} half />
             </>
             )}
+            { isSignup && <Input name="username" label="User Name" handleChange={handleChange} type="text" /> }
             <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
+            { isSignup && <Input name="contact" label="Contact Number" handleChange={handleChange} type="number" /> }
             <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
             { isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" /> }
           </Grid>

@@ -26,16 +26,20 @@ export const signin = async (req, res) => {
 };
 
 export const signup = async (req, res) => {
-  const { email, password, firstName, lastName } = req.body;
+  const { email, password, firstName, lastName, username, contact } = req.body;
 
   try {
     const oldUser = await UserModal.findOne({ email });
 
-    if (oldUser) return res.status(400).json({ message: "User already exists" });
+    if (oldUser) return res.status(400).json({ message: "Email already exists" });
+
+    const oldUsername = await UserModal.findOne({ username });
+
+    if (oldUsername) return res.status(400).json({ message: "Username already exists" });
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const result = await UserModal.create({ email, password: hashedPassword, name: `${firstName} ${lastName}` });
+    const result = await UserModal.create({ email, username, contact, password: hashedPassword, name: `${firstName} ${lastName}` });
 
     const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "1h" } );
 
