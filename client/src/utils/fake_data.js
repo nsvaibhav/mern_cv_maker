@@ -1,12 +1,12 @@
 //Data used when the user hits "Example" btn
 const data = {
   header: {
-    name: "James Clark",
+    name: "Vaibhav Yadav",
     address: "746 N Candy St, #25",
-    city: "Phoenix",
-    state: "AZ",
+    city: "Kasganj",
+    state: "Uttar Pradesh",
     zip: "84920",
-    phone: "6105453672",
+    phone: "9457768999",
     email: "jamesck@email.com",
     summary:
       "Noster necessitatibus ut nam, atqui epicurei lobortis nec at, est et sapientem iracundia referrentur. Nec consulatu sententiae in. Vis tamquam feugait molestiae ea. Sed an novum melius laoreet, ex eos persius quaeque. Sapientem iracundia.",
