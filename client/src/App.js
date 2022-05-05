@@ -1,12 +1,16 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-
-import PostDetails from './components/PostDetails/PostDetails';
 import Navbar from './components/Navbar/Navbar';
-import Home from './components/Home/Home';
 import Auth from './components/Auth/Auth';
-import CreatorOrTag from './components/CreatorOrTag/CreatorOrTag';
+
+import LandingPage from './components/presentation/landingPage';
+import GettingStarted from './components/presentation/gettingStarted';
+import AboutUs from './components/presentation/aboutUs';
+import Contacts from './components/presentation/contact';
+import Education from './components/presentation/education';
+import Finalize from  './components/presentation/finalizePage';
+
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem('profile'));
@@ -17,11 +21,13 @@ const App = () => {
         <Navbar />
         <Switch>
           <Route path="/" exact component={() => <Redirect to="/auth" />} />
-          <Route path="/posts" exact component={Home} />
-          <Route path="/posts/search" exact component={Home} />
-          <Route path="/posts/:id" exact component={PostDetails} />
-          <Route path={['/creators/:name', '/tags/:name']} component={CreatorOrTag} />
-          <Route path="/auth" exact component={() => (!user ? <Auth /> : <Redirect to="/posts" />)} />
+          <Route path="/getting-started" exact component={GettingStarted}></Route>
+          <Route path="/education" component={Education}></Route>  
+          <Route path="/contact" component={Contacts}></Route>
+          <Route path="/resume-templates" component={GettingStarted}></Route>
+          <Route path="/about-us" component={AboutUs}></Route>
+          <Route path="/finalize" component={Finalize}></Route>
+          <Route path="/auth" exact component={() => (!user ? <Auth /> : <Redirect to="/resume-templates" />)} />
         </Switch>
       </Container>
     </BrowserRouter>
